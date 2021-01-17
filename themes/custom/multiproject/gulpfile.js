@@ -1,17 +1,23 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
+const minifyJs = require('gulp-uglify');
 
 //New way Gulp v4.0 of writting tasks.
-//Task to Compile Sass.
+
+//SASS Task.
 function style() {
-//1. Where is  my 'main.SCSS' file to look at for compile
-    return gulp.src("src/scss/main.scss")
-//2. Pass that file trough sass compiler
+    return gulp.src("src/scss/*.scss")
     .pipe(sass().on("error", sass.logError))
-//3. Where Do I save the compiled  CSS?
-    .pipe(gulp.dest("src/css"))
-//4. Stream changes to all browsers
+    .pipe(gulp.dest("dist/css"))
+    .pipe(browserSync.stream());
+}
+
+//JS Task.
+function jsTask() {
+    return gulp.src("src/js/*.js")
+    .pipe(minifyJs())
+    .pipe(gulp.dest("dist/js"))
     .pipe(browserSync.stream());
 }
 
@@ -26,9 +32,9 @@ function watch() {
         proxy: "http://localhost:8080/multifunction-project-D9/"
     });
     gulp.watch("src/scss/**/*.scss", style);
+    gulp.watch("src/js/**/*.js", jsTask);
     gulp.watch("templates/**/*.html.twig").on("change", browserSync.reload);
     gulp.watch("src/js/**/*.js").on("change", browserSync.reload);
-    // gulp.watch("src/js/**/*.js", jschanges);
 }
 
 
@@ -81,4 +87,5 @@ function watch() {
 // gulp.task('default', gulp.series('js', 'serve', 'font-awesome', 'fonts'))
 
 exports.style = style;
+exports.jsTask = jsTask;
 exports.watch = watch;

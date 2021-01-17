@@ -101,3 +101,8 @@ modules/README.txt
 profiles/README.txt
 sites/README.txt
 themes/README.txt
+
+themes/custom/*/node_modules/
+themes/custom/*/src/css
+themes/custom/*/src/fonts
+themes/custom/*/src/js

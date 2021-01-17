@@ -2,6 +2,12 @@ global-styling:
   version: 1.x
   css:
     theme:
-      src/css/main.css: {}
+      dist/css/main.css: {}
   js:
-    src/js/main.js: {}
+    dist/js/main.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
