@@ -102,6 +102,7 @@ profiles/README.txt
 sites/README.txt
 themes/README.txt
 
+themes/*/*/node_modules/
 themes/custom/*/node_modules/
 themes/custom/*/src/css
 themes/custom/*/src/fonts
